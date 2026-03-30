@@ -157,7 +157,7 @@ a {
 }
 
 .h-logo-3d::after {
-    content: 'h';
+    content: 'o';
     position: absolute;
     top: 0;
     left: 0;
