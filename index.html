@@ -159,6 +159,169 @@
         .form-btn svg {
             margin-left: 8px;
         }
+
+        /* Service Modal Styles */
+        .service-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .service-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .service-modal-content {
+            background: #1c1c1c;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 550px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            /* Handle scrolling within modal if content is too long on mobile */
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .service-modal-overlay.active .service-modal-content {
+            transform: translateY(0) scale(1);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .modal-close-btn:hover {
+            background: var(--orange, #f25c27);
+            border-color: var(--orange, #f25c27);
+            transform: rotate(90deg);
+        }
+        .modal-body h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-right: 40px;
+            line-height: 1.3;
+        }
+        .modal-body p {
+            color: var(--text-muted, #a0a0a0);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .modal-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .modal-features li {
+            color: #e0e0e0;
+            font-size: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.5;
+        }
+        .modal-features li:last-child {
+            margin-bottom: 0;
+        }
+        .modal-features li::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23f25c27' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .modal-cta {
+            width: 100%;
+            text-align: center;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--orange, #f25c27);
+            color: #fff;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .modal-cta:hover {
+            background: #d84b1b;
+            transform: translateY(-2px);
+        }
+        .modal-cta svg {
+            margin-left: 8px;
+        }
+        /* Make cards clickable */
+        .services-carousel .card {
+            cursor: pointer;
+            position: relative;
+        }
+        /* Desktop specific */
+        @media (min-width: 1024px) {
+            .services-carousel .card {
+                transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+            }
+            .services-carousel .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+                border-color: rgba(242, 92, 39, 0.5);
+            }
+        }
+        @media (max-width: 768px) {
+            .service-modal-content {
+                padding: 30px 25px;
+            }
+            .modal-body h3 {
+                font-size: 24px;
+            }
+            .modal-features {
+                padding: 15px;
+            }
+            .modal-features li {
+                font-size: 14px;
+            }
+        }
     </style>
 <body>
     <nav class="navbar">
@@ -179,7 +342,7 @@
         </div>
         <div class="hero-content">
             <div class="hero-text-container">
-                <h3 class="hero-title">TURNING IDEAS<br>INTO POWERFUL<br>DIGITAL EXPERIENCES</h3>
+                <h3 class="hero-title">Brand Kamu Sepi?<br>Kami Bikin Ramai, Closing,<br>dan Repeat Order</h3>
                 <p class="hero-subtitle">by Orvion Creative</p>
             </div>
         </div>
@@ -202,50 +365,83 @@
 
     <section class="video-section">
         <div class="video-header">
-            <h2 class="section-title">DATA DRIVES RESULTS.<br>NOT GUESSWORK.</h2>
-            <p class="section-desc">We craft high-performing websites and digital experiences based on real user behavior, not assumptions. From design to development, every decision is built to increase engagement, conversions, and business growth.</p>
+            <h2 class="section-title">Strategi dan Konten Terbukti untuk Hasil Nyata</h2>
+            <p class="section-desc">Kami bantu brand kamu tumbuh lewat strategi, konten, dan eksekusi yang terbukti menghasilkan, bukan sekadar posting cantik</p>
         </div>
-        <div class="video-placeholder">
-            <div class="play-btn">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </div>
+        <div class="video-placeholder" style="position: relative; overflow: hidden; padding-top: 56.25%; border-radius: 20px; background: #000; width: 100%; max-width: 800px; margin: 0 auto 30px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/ysz5S6PUM-U?rel=0" title="Orvion Creative Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <a href="#" class="btn-start center-btn">START NOW <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
     </section>
 
     <section class="services-section">
         <div class="services-header">
-            <h2 class="section-title text-left">STRATEGY, DESIGN, DEVELOPMENT<br>—WE'VE GOT YOU COVERED.</h2>
+            <h2 class="section-title text-left">Layanan Terbaik<br>Untuk Anda</h2>
         </div>
         <div class="services-carousel-wrapper">
             <div class="services-carousel">
                 <div class="card card-orange">
-                <h3>Design</h3>
-                <p class="card-desc">Deep channel audit and Identify what works and strategy up your views.</p>
+                <h3>Social Media Management</h3>
+                <p class="card-desc">Kelola Sosial Media Tanpa Ribet, Fokus ke Penjualan.</p>
             </div>
             <div class="card card-white">
-                <h3>Website</h3>
-                <p class="card-desc">From thumbnails to production optimization, manage deadlines.</p>
+                <h3>Social Media Strategist</h3>
+                <p class="card-desc">Strategi yang Bikin Konten Kamu "Ngena & Jualan".</p>
             </div>
             <div class="card card-dark">
-                <h3>Promotion</h3>
-                <p class="card-desc">We handle full content creation that elevate your brand.</p>
+                <h3>KOL Management</h3>
+                <p class="card-desc">Influencer yang Tepat = Penjualan Meledak.</p>
             </div>
-            <div class="card card-black span-2">
-                <div class="card-black-content">
-                    <h3>Project</h3>
-                    <p class="card-desc">Ready to scale beyond one channel? We help you build and manage a network of channels that multiply your reach, revenue, and market dominance.</p>
-                </div>
+
+            <div class="services-carousel">
+                <div class="card card-orange">
+                <h3>Offline Event Handling</h3>
+                <p class="card-desc">Event yang Ramai, Berkesan, dan Viral.</p>
             </div>
-        </div>
+            <div class="card card-white">
+                <h3>Digital Marketing Activation</h3>
+                <p class="card-desc">Campaign Digital yang Bikin Brand Kamu “Naik Level”.</p>
+            </div>
+            <div class="card card-dark">
+                <h3>UGC Viral Campaign</h3>
+                <p class="card-desc">Konten Viral Tanpa Terlihat “Jualan”.</p>
+            </div>
+
+            <div class="services-carousel">
+                <div class="card card-orange">
+                <h3>Website Design & Development</h3>
+                <p class="card-desc">Website yang Bukan Cuma Keren — Tapi Jualan.</p>
+            </div>
+            <div class="card card-white">
+                <h3>Commercial Video Production</h3>
+                <p class="card-desc">Video yang Menjual, Bukan Sekadar Estetik.</p>
+            </div>
+            <div class="card card-dark">
+                <h3>Ads</h3>
+                <p class="card-desc">Iklan yang Tepat Sasaran, Bukan Buang Budget.</p>
+            </div>
+
+            <div class="services-carousel">
+                <div class="card card-orange">
+                <h3>TikTok Live Shopping</h3>
+                <p class="card-desc">Live Streaming yang Closing Terus.</p>
+            </div>
+            <div class="card card-white">
+                <h3>Ads Management & Digital Advertising</h3>
+                <p class="card-desc">Scaling Iklan Tanpa Drama.</p>
+            </div>
+            <div class="card card-dark">
+                <h3>Design & Graphic Maker</h3>
+                <p class="card-desc">Desain yang Bikin Brand Kamu Stand Out.</p>
+            </div>
         </div>
     </section>
 
     <section class="stats-section" id="contact">
         <div class="cta-container">
             <div class="cta-content">
-                <h2 class="section-title text-left">LET'S CREATE<br><span class="highlight-orange">SOMETHING EXTRAORDINARY.</span></h2>
-                <p class="cta-desc">Whether you have a specific project in mind or just want to explore what's possible, our team is ready to help you push boundaries.</p>
+                <h2 class="section-title text-left">Jangan Tunggu<br><span class="highlight-orange">Kompetitor Kamu Lebih Dulu Naik</span></h2>
+                <p class="cta-desc">Setiap hari kamu menunda, kompetitor kamu makin unggul. Sekarang waktunya kamu scale brand dengan strategi yang tepat.</p>
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="icon-box">
@@ -291,5 +487,177 @@
         </div>
     </section>
 
+    <!-- Services Modal -->
+    <div class="service-modal-overlay" id="serviceModal">
+        <div class="service-modal-content">
+            <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+            <div class="modal-body">
+                <h3 id="modalTitle">Service Title</h3>
+                <p id="modalDesc">Service detailed description goes here.</p>
+                <ul class="modal-features" id="modalFeatures">
+                    <!-- Dynamic features -->
+                </ul>
+                <a href="#contact" class="modal-cta" onclick="document.getElementById('serviceModal').classList.remove('active'); document.body.style.overflow = '';">Dapatkan Layanan Ini <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const serviceDetails = {
+            "Social Media Management": {
+                desc: "Kami mengelola akun sosial media Anda secara penuh mulai dari perencanaan ide, pembuatan konten (desain & video), copywriting, hingga penjadwalan. Fokus kami adalah menciptakan interaksi yang bermakna dan mengonversi followers menjadi pelanggan setia.",
+                features: [
+                    "Perencanaan Konten & Kalender Editorial",
+                    "Desain Grafis & Video Reels/Tiktok",
+                    "Caption Menarik & Optimasi Hashtag",
+                    "Laporan Performa Bulanan"
+                ]
+            },
+            "Social Media Strategist": {
+                desc: "Bukan sekedar posting, kami menciptakan grand design strategi komunikasi brand Anda di digital. Mulai dari analisis kompetitor, penentuan persona brand, hingga racikan pillar konten yang terbukti meningkatkan engagement & sales.",
+                features: [
+                    "Audit Sosial Media Komprehensif",
+                    "Riset Kompetitor & Tren Pasar",
+                    "Pembuatan Guidelines & Content Pillar",
+                    "Strategi Growth & Engagement"
+                ]
+            },
+            "KOL Management": {
+                desc: "Meningkatkan kepercayaan dan reach brand Anda melalui kolaborasi dengan Key Opinion Leader (KOL) atau Influencer yang relevan. Kami mengatur semuanya dari kurasi, negosiasi, hingga eksekusi brief.",
+                features: [
+                    "Kurasi KOL Sesuai Niche Target",
+                    "Negosiasi Rate & Pembuatan Kontrak",
+                    "Pembuatan & Arahan Brief Konten",
+                    "Tracking Hasil Penjualan (Traffic)"
+                ]
+            },
+            "Offline Event Handling": {
+                desc: "Dari konsep hingga eksekusi hari H, kami menangani acara offline Anda agar berjalan lancar, meriah, dan memberikan impresi yang mendalam kepada audiens. Cocok untuk launching produk, gathering, atau aktivasi brand.",
+                features: [
+                    "Konsep & Tema Event (End-to-end)",
+                    "Manajemen Vendor & Logistik",
+                    "Promosi Event (Online to Offline)",
+                    "Dokumentasi & Pasca-Event Report"
+                ]
+            },
+            "Digital Marketing Activation": {
+                desc: "Kami merancang program aktivasi digital atau campaign yang terintegrasi (contoh: giveaway, challenge, promo khusus) untuk membangkitkan awareness atau mengumpulkan leads secara masif dalam waktu singkat.",
+                features: [
+                    "Brainstorming Ide Campaign Unik",
+                    "Integrasi Berbagai Platform Digital",
+                    "Pembuatan Landing Page Kampanye",
+                    "Optimasi Perolehan Leads/Penjualan"
+                ]
+            },
+            "UGC Viral Campaign": {
+                desc: "User-Generated Content adalah raja! Kami membantu brand Anda untuk memicu audiens asli membuat konten tentang produk Anda, menciptakan gelombang viral organik yang terlihat natural dan dipercaya target pasar.",
+                features: [
+                    "Strategi Pemicu UGC Kreatif",
+                    "Seeders Konten Awal (Micro-Influencer)",
+                    "Mekanisme Reward / Gamification",
+                    "Amplifikasi Konten UGC Terbaik"
+                ]
+            },
+            "Website Design & Development": {
+                desc: "Website adalah aset digital jangka panjang. Kami membuat company profile, landing page, atau toko online yang responsif, punya estetik premium, dan dioptimasi penuh untuk kecepatan dan SEO.",
+                features: [
+                    "Desain UI/UX Modern & Custom",
+                    "Mobile Responsive & Fast Loading",
+                    "Optimasi SEO On-Page",
+                    "Sistem Keamanan & Maintenance"
+                ]
+            },
+            "Commercial Video Production": {
+                desc: "Visual yang bercerita. Dari video iklan komersial, profile perusahaan, hingga video campaign khusus. Kami ditangani oleh tim produksi profesional yang mengerti cara penceritaan visual bekerja menghasilkan sales.",
+                features: [
+                    "Penulisan Script & Storyboard",
+                    "Talent & Location Scouting",
+                    "Shooting Kualitas Cinema (4K)",
+                    "Editing, Color Grading & Sound Design"
+                ]
+            },
+            "Ads": {
+                desc: "Optimasi budget iklan Anda di berbagai platform digital untuk hasil yang terukur. Kami tidak hanya mengincar klik atau impresi, tapi juga Return on Ad Spend (ROAS) yang positif dan menguntungkan.",
+                features: [
+                    "Riset Audience & Target Market",
+                    "Pembuatan Ad Creative Copy & Visual",
+                    "A/B Testing Campaign",
+                    "Reporting Performa Berkala"
+                ]
+            },
+            "TikTok Live Shopping": {
+                desc: "Fasilitasi tren belanja masa kini lewat Live Streaming TikTok. Kami meyediakan tim lengkap, peralatan, strategi promosi, hingga host berpengalaman untuk memaksimalkan penjualan (checkout) saat sesi live.",
+                features: [
+                    "Setup Studio & Peralatan Live",
+                    "Penyediaan Host/Streamer Komunikatif",
+                    "Strategi Flash Sale & Gimmick",
+                    "Manajemen Produk & Moderator Live"
+                ]
+            },
+            "Ads Management & Digital Advertising": {
+                desc: "Penanganan iklan yang lebih komprehensif (Meta Ads, Google Ads, TikTok Ads) untuk me-scale up bisnis yang sudah berjalan. Terstruktur mulai dari funneling, retargeting, hingga scaling budget secara stabil.",
+                features: [
+                    "Full-Funnel Advertising Strategy",
+                    "Pixel Installation & Tracking Setup",
+                    "Advanced Retargeting Engine",
+                    "Optimization & Scaling Iklan"
+                ]
+            },
+            "Design & Graphic Maker": {
+                desc: "Kebutuhan desain harian Anda, diselesaikan dengan standar premium agensi. Pembuatan berbagai macam aset visual mulai dari logo, banner promosi, kemasan, hingga deck presentasi yang stand out.",
+                features: [
+                    "Brand Identity (Logo, Warna, Tipografi)",
+                    "Desain Materi Feed & Story Digital",
+                    "Desain Kemasan & Cetak (Packaging)",
+                    "Penyampaian Brief Visual yang Tepat"
+                ]
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('serviceModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalFeatures = document.getElementById('modalFeatures');
+            const closeBtn = document.getElementById('modalCloseBtn');
+
+            document.querySelectorAll('.services-carousel .card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    const titleEl = this.querySelector('h3');
+                    if (!titleEl) return;
+                    
+                    const rawTitle = titleEl.textContent.trim().toLowerCase();
+                    const matchedKey = Object.keys(serviceDetails).find(k => k.toLowerCase() === rawTitle);
+                    const details = matchedKey ? serviceDetails[matchedKey] : null;
+                    
+                    if (details) {
+                        modalTitle.innerText = title;
+                        modalDesc.innerText = details.desc;
+                        modalFeatures.innerHTML = '';
+                        details.features.forEach(feature => {
+                            const li = document.createElement('li');
+                            li.innerText = feature;
+                            modalFeatures.appendChild(li);
+                        });
+                        modal.classList.add('active');
+                        // Prevent background scroll
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

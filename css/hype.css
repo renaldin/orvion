@@ -253,7 +253,7 @@ a {
 }
 
 .video-header .section-title {
-    font-size: clamp(28px, 4vw, 42px);
+    /* font-size: clamp(28px, 4vw, 42px); */
     margin-bottom: 20px;
 }
 
