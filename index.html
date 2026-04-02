@@ -8,8 +8,51 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/hype.css?v=1.1">
     <style>
+        body {
+            background: radial-gradient(circle at 50% -20%, #3c404a 0%, #1e1f24 100%) !important;
+            background-attachment: fixed !important;
+        }
+        
+        .services-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+        }
+        @media (max-width: 768px) {
+            .services-header-top {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+        .services-nav {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-arrow {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-arrow:hover {
+            background: var(--orange, #f25c27);
+            border-color: var(--orange, #f25c27);
+            transform: scale(1.1);
+        }
+
         /* Carousel Desktop Override */
         @media (min-width: 1024px) {
             .services-carousel-wrapper {
@@ -324,12 +367,12 @@
         }
     </style>
 <body>
-    <nav class="navbar">
+    <nav class="navbar" data-aos="fade-down">
         <div class="logo">
             <span class="logo-icon">o</span>
             <span class="logo-text">Orvion<br>Creative</span>
         </div>
-        <a href="#" class="btn-start">START NOW <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+        <a href="#services-section-id" class="btn-start">START NOW <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
     </nav>
 
     <header class="hero">
@@ -341,8 +384,8 @@
             </div>
         </div>
         <div class="hero-content">
-            <div class="hero-text-container">
-                <h3 class="hero-title">Brand Kamu Sepi?<br>Kami Bikin Ramai, Closing,<br>dan Repeat Order</h3>
+            <div class="hero-text-container" data-aos="zoom-in" data-aos-duration="1000">
+                <h2 class="hero-title">Brand Kamu Sepi?<br>Kami Bikin Ramai, Closing,<br>dan Repeat Order</h2>
                 <p class="hero-subtitle">by Orvion Creative</p>
             </div>
         </div>
@@ -364,82 +407,167 @@
     </div>
 
     <section class="video-section">
-        <div class="video-header">
+        <div class="video-header" data-aos="fade-up">
             <h2 class="section-title">Strategi dan Konten Terbukti untuk Hasil Nyata</h2>
             <p class="section-desc">Kami bantu brand kamu tumbuh lewat strategi, konten, dan eksekusi yang terbukti menghasilkan, bukan sekadar posting cantik</p>
         </div>
-        <div class="video-placeholder" style="position: relative; overflow: hidden; padding-top: 56.25%; border-radius: 20px; background: #000; width: 100%; max-width: 800px; margin: 0 auto 30px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
-            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/ysz5S6PUM-U?rel=0" title="Orvion Creative Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-placeholder" data-aos="zoom-in" data-aos-delay="200" style="position: relative; overflow: hidden; padding-top: 56.25%; border-radius: 20px; background: #000; width: 100%; max-width: 800px; margin: 0 auto 30px auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+            <iframe 
+                src="https://www.youtube.com/embed/8p7t8L-WDd0"
+                title="Orvion Creative Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 80%;">
+            </iframe>
         </div>
-        <a href="#" class="btn-start center-btn">START NOW <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
+    </section>
+
+    <section class="services-section" id="services-section-id">
+        <div class="services-header-top" data-aos="fade-up">
+            <h2 class="section-title text-left" style="margin-bottom:0;">Layanan Orvion Creative<br>Terbaik Untuk Anda</h2>
+            <div class="services-nav">
+                <button class="nav-arrow" id="prevSrv" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="nav-arrow" id="nextSrv" aria-label="Next">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+        <div class="services-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div class="services-carousel">
+                <div class="card card-orange">
+                    <h4>Social Media Management</h4>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p class="card-desc">Kelola Sosial Media Tanpa Ribet, Fokus ke Penjualan.</p>
+                </div>
+                <div class="card card-white">
+                    <h4>Social Media Strategist</h4>
+                    <p class="card-desc">Strategi yang Bikin Konten Kamu "Ngena & Jualan".</p>
+                </div>
+                <div class="card card-dark">
+                    <h4>KOL Management</h4>
+                    <p class="card-desc">Influencer yang Tepat = Penjualan Meledak.</p>
+                </div>
+
+            <div class="services-carousel">
+                <div class="card card-orange">
+                    <h4>Offline Event Handling</h4>
+                    <p class="card-desc">Event yang Ramai, Berkesan, dan Viral.</p>
+                </div>
+                <div class="card card-white">
+                    <h4>Digital Marketing Activation</h4>
+                    <p class="card-desc">Campaign Digital yang Bikin Brand Kamu “Naik Level”.</p>
+                </div>
+                <div class="card card-dark">
+                    <h4>UGC Viral Campaign</h4>
+                    <p class="card-desc">Konten Viral Tanpa Terlihat “Jualan”.</p>
+                </div>
+
+            <div class="services-carousel">
+                <div class="card card-orange">
+                    <h4>Website Design & Development</h4>
+                    <p class="card-desc">Website yang Bukan Cuma Keren — Tapi Jualan.</p>
+                </div>
+                <div class="card card-white">
+                    <h4>Commercial Video Production</h4>
+                    <p class="card-desc">Video yang Menjual, Bukan Sekadar Estetik.</p>
+                </div>
+                <div class="card card-dark">
+                    <h4>Ads</h4>
+                    <p class="card-desc">Iklan yang Tepat Sasaran, Bukan Buang Budget.</p>
+                </div>
+
+            <div class="services-carousel">
+                <div class="card card-orange">
+                    <h4>TikTok Live Shopping</h4>
+                    <p class="card-desc">Live Streaming yang Closing Terus.</p>
+                </div>
+                <div class="card card-white">
+                    <h4>Ads Management & Digital Advertising</h4>
+                    <p class="card-desc">Scaling Iklan Tanpa Drama.</p>
+                </div>
+                <div class="card card-dark">
+                    <h4>Design & Graphic Maker</h4>
+                    <p class="card-desc">Desain yang Bikin Brand Kamu Stand Out.</p>
+                </div>
+        </div>
     </section>
 
     <section class="services-section">
-        <div class="services-header">
-            <h2 class="section-title text-left">Layanan Terbaik<br>Untuk Anda</h2>
+        <div class="services-header-top" data-aos="fade-up">
+            <h2 class="section-title text-left" style="margin-bottom:0;">Layanan Orvion Network<br>Terbaik Untuk Anda</h2>
+            <div class="services-nav">
+                <button class="nav-arrow" id="prevSrv2" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="nav-arrow" id="nextSrv2" aria-label="Next">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
         </div>
-        <div class="services-carousel-wrapper">
+        <div class="services-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
             <div class="services-carousel">
                 <div class="card card-orange">
-                <h3>Social Media Management</h3>
-                <p class="card-desc">Kelola Sosial Media Tanpa Ribet, Fokus ke Penjualan.</p>
-            </div>
-            <div class="card card-white">
-                <h3>Social Media Strategist</h3>
-                <p class="card-desc">Strategi yang Bikin Konten Kamu "Ngena & Jualan".</p>
-            </div>
-            <div class="card card-dark">
-                <h3>KOL Management</h3>
-                <p class="card-desc">Influencer yang Tepat = Penjualan Meledak.</p>
-            </div>
+                    <h4>Website Landing Page</h4>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p class="card-desc">Halaman simpel dan fokus untuk meningkatkan konversi dan penjualan.</p>
+                </div>
+
+                <div class="card card-white">
+                    <h4>Website Company Profile</h4>
+                    <p class="card-desc">Tampilkan identitas bisnis Anda secara profesional dan terpercaya.</p>
+                </div>
+
+                <div class="card card-dark">
+                    <h4>Website E-commerce</h4>
+                    <p class="card-desc">Toko online lengkap untuk jualan produk dengan sistem yang terintegrasi.</p>
+                </div>
 
             <div class="services-carousel">
                 <div class="card card-orange">
-                <h3>Offline Event Handling</h3>
-                <p class="card-desc">Event yang Ramai, Berkesan, dan Viral.</p>
-            </div>
-            <div class="card card-white">
-                <h3>Digital Marketing Activation</h3>
-                <p class="card-desc">Campaign Digital yang Bikin Brand Kamu “Naik Level”.</p>
-            </div>
-            <div class="card card-dark">
-                <h3>UGC Viral Campaign</h3>
-                <p class="card-desc">Konten Viral Tanpa Terlihat “Jualan”.</p>
-            </div>
+                    <h4>WebApp</h4>
+                    <p class="card-desc">Aplikasi berbasis web yang membantu operasional bisnis jadi lebih efisien.</p>
+                </div>
+
+                <div class="card card-white">
+                    <h4>POS</h4>
+                    <p class="card-desc">Sistem kasir digital untuk mempermudah transaksi dan pencatatan penjualan.</p>
+                </div>
+
+                <div class="card card-dark">
+                    <h4>ERP Basic</h4>
+                    <p class="card-desc">Kelola bisnis Anda dari satu sistem terintegrasi dengan fitur dasar ERP.</p>
+                </div>
 
             <div class="services-carousel">
                 <div class="card card-orange">
-                <h3>Website Design & Development</h3>
-                <p class="card-desc">Website yang Bukan Cuma Keren — Tapi Jualan.</p>
-            </div>
-            <div class="card card-white">
-                <h3>Commercial Video Production</h3>
-                <p class="card-desc">Video yang Menjual, Bukan Sekadar Estetik.</p>
-            </div>
-            <div class="card card-dark">
-                <h3>Ads</h3>
-                <p class="card-desc">Iklan yang Tepat Sasaran, Bukan Buang Budget.</p>
-            </div>
+                    <h4>ERP Advanced</h4>
+                    <p class="card-desc">Solusi ERP lengkap untuk manajemen bisnis yang lebih kompleks dan scalable.</p>
+                </div>
 
-            <div class="services-carousel">
-                <div class="card card-orange">
-                <h3>TikTok Live Shopping</h3>
-                <p class="card-desc">Live Streaming yang Closing Terus.</p>
-            </div>
-            <div class="card card-white">
-                <h3>Ads Management & Digital Advertising</h3>
-                <p class="card-desc">Scaling Iklan Tanpa Drama.</p>
-            </div>
-            <div class="card card-dark">
-                <h3>Design & Graphic Maker</h3>
-                <p class="card-desc">Desain yang Bikin Brand Kamu Stand Out.</p>
-            </div>
+                <div class="card card-white">
+                    <h4>Booking System</h4>
+                    <p class="card-desc">Permudah reservasi dan jadwal pelanggan secara otomatis dan real-time.</p>
+                </div>
+
+                <div class="card card-dark">
+                    <h4>Membership</h4>
+                    <p class="card-desc">Kelola pelanggan loyal dengan sistem membership yang terstruktur.</p>
+                </div>
         </div>
     </section>
 
     <section class="stats-section" id="contact">
         <div class="cta-container">
-            <div class="cta-content">
+            <div class="cta-content" data-aos="fade-right">
                 <h2 class="section-title text-left">Jangan Tunggu<br><span class="highlight-orange">Kompetitor Kamu Lebih Dulu Naik</span></h2>
                 <p class="cta-desc">Setiap hari kamu menunda, kompetitor kamu makin unggul. Sekarang waktunya kamu scale brand dengan strategi yang tepat.</p>
                 <div class="contact-info">
@@ -472,36 +600,24 @@
                     </div>
                 </div>
             </div>
-            <div class="cta-form-wrapper">
+            <div class="cta-form-wrapper" data-aos="fade-left" data-aos-delay="200">
                 <div class="glass-panel">
-                    <h3>Ready to start?</h3>
+                    <h2 class="hero-title">Ready to start?</h2>
                     <p>Drop us a message and we'll get back to you shortly.</p>
-                    <form class="cta-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Tell us about your project" rows="4" required></textarea>
-                        <button type="button" class="btn-start form-btn">SEND MESSAGE <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+                    <form class="cta-form" action="https://formspree.io/f/meepzaaq" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Tell us about your project" rows="4" required></textarea>
+                        <button type="submit" class="btn-start form-btn">SEND MESSAGE</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Modal -->
-    <div class="service-modal-overlay" id="serviceModal">
-        <div class="service-modal-content">
-            <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
-            <div class="modal-body">
-                <h3 id="modalTitle">Service Title</h3>
-                <p id="modalDesc">Service detailed description goes here.</p>
-                <ul class="modal-features" id="modalFeatures">
-                    <!-- Dynamic features -->
-                </ul>
-                <a href="#contact" class="modal-cta" onclick="document.getElementById('serviceModal').classList.remove('active'); document.body.style.overflow = '';">Dapatkan Layanan Ini <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>
-            </div>
-        </div>
-    </div>
+    <!-- Services Modal Removed -->
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         const serviceDetails = {
             "Social Media Management": {
@@ -615,47 +731,66 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('serviceModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDesc = document.getElementById('modalDesc');
-            const modalFeatures = document.getElementById('modalFeatures');
-            const closeBtn = document.getElementById('modalCloseBtn');
+            // Initialize AOS Animations
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
 
+            // Services Carousel Navigation
+            const wrappers = document.querySelectorAll('.services-carousel-wrapper');
+            const srvWrapper = wrappers[0];
+            const srvWrapper2 = wrappers[1];
+            const prevBtn = document.getElementById('prevSrv');
+            const nextBtn = document.getElementById('nextSrv');
+            const prevBtn2 = document.getElementById('prevSrv2');
+            const nextBtn2 = document.getElementById('nextSrv2');
+            
+            if (prevBtn && nextBtn && srvWrapper) {
+                // Determine scroll amount based on card width
+                const getScrollAmount = () => {
+                    const card = srvWrapper.querySelector('.card');
+                    return card ? card.offsetWidth + 20 : 350; // 20 is gap
+                };
+
+                prevBtn.addEventListener('click', () => {
+                    srvWrapper.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    console.log('masuk 2')
+                    srvWrapper.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                });
+            }
+
+            if (prevBtn2 && nextBtn2 && srvWrapper2) {
+                
+                const getScrollAmount2 = () => {
+                    const card2 = srvWrapper2.querySelector('.card');
+                    return card2 ? card2.offsetWidth + 20 : 350; // 20 is gap
+                };
+
+                prevBtn2.addEventListener('click', () => {
+                    srvWrapper2.scrollBy({ left: -getScrollAmount2(), behavior: 'smooth' });
+                });
+                
+                nextBtn2.addEventListener('click', () => {
+                    console.log('masuk 1')
+                    srvWrapper2.scrollBy({ left: getScrollAmount2(), behavior: 'smooth' });
+                });
+            }
+
+            // Redirect to detail page instead of showing modal
             document.querySelectorAll('.services-carousel .card').forEach(card => {
                 card.addEventListener('click', function(e) {
-                    const titleEl = this.querySelector('h3');
+                    const titleEl = this.querySelector('h4');
                     if (!titleEl) return;
                     
-                    const rawTitle = titleEl.textContent.trim().toLowerCase();
-                    const matchedKey = Object.keys(serviceDetails).find(k => k.toLowerCase() === rawTitle);
-                    const details = matchedKey ? serviceDetails[matchedKey] : null;
-                    
-                    if (details) {
-                        modalTitle.innerText = title;
-                        modalDesc.innerText = details.desc;
-                        modalFeatures.innerHTML = '';
-                        details.features.forEach(feature => {
-                            const li = document.createElement('li');
-                            li.innerText = feature;
-                            modalFeatures.appendChild(li);
-                        });
-                        modal.classList.add('active');
-                        // Prevent background scroll
-                        document.body.style.overflow = 'hidden';
-                    }
+                    const rawTitle = titleEl.textContent.trim();
+                    const slug = rawTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    window.location.href = 'service-detail.html?id=' + slug;
                 });
-            });
-
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
             });
         });
     </script>
